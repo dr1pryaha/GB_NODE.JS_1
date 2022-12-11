@@ -1,24 +1,34 @@
 import colors from "colors";
 console.log(colors.red("Hello World!"));
 
-const arg1 = Number(process.argv[2]);
-const arg2 = Number(process.argv[3]);
-
-let numbers = [];
+let arg1 = Number(process.argv[2]);
+let arg2 = Number(process.argv[3]);
 
 function simpleNumbers(arg1, arg2) {
-  if (arg2 > 1) {
-    nextVar: for (var i = arg1; i <= arg2; i++) {
-      for (var j = 2; j < i; j++) {
-        if (i % j == 0) {
-          continue nextVar;
-        }
+  let numbers = [];
+
+  for (let i = arg1; i <= arg2; i++) {
+    for (let j = 2; j <= i; j++) {
+      if (i % j === 0 && j < i) {
+        break;
+      } else if (j === i) {
+        numbers = [...numbers, i];
       }
-      numbers = [...numbers, i];
     }
   }
 
-  let nums = numbers.map((n, i) => {
+  // if (arg2 > 1) {
+  //   nextVar: for (var i = arg1; i <= arg2; i++) {
+  //     for (var j = 2; j < i; j++) {
+  //       if (i % j == 0) {
+  //         continue nextVar;
+  //       }
+  //     }
+  //     numbers = [...numbers, i];
+  //   }
+  // }
+
+  let nums = numbers.forEach((n, i) => {
     if (i % 3 === 0) {
       console.log(colors.red(n));
     } else if (i % 3 === 1) {
